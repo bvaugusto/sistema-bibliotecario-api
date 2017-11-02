@@ -1,4 +1,6 @@
 ### Laravel template
+/.idea/
+.idea/inspectionProfiles/
 vendor/
 node_modules/
 npm-debug.log

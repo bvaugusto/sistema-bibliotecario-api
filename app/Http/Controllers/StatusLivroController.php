@@ -62,10 +62,10 @@ class StatusLivroLivroController extends Controller
             $statusLivro->notacao = $input['notacao'];
             $statusLivro->save();
 
-            return response()->json(['success' => true, 'message' => 'StatusLivro gravado com sucesso!']);
+            return response()->json(['success' => true, 'message' => 'Status do livro cadastrado com sucesso!']);
 
         }catch (\Exception $exception){
-            return response()->json(['success' => true, 'message' => 'Falha ao gravar statusLivro!']);
+            return response()->json(['success' => true, 'message' => 'Falha ao cadastrar status!']);
         }
     }
 
@@ -129,10 +129,10 @@ class StatusLivroLivroController extends Controller
             $statusLivro->notacao = $input['notacao'];
             $statusLivro->update();
 
-            return response()->json(['success' => true, 'message' => 'StatusLivro cadastrado com sucesso!']);
+            return response()->json(['success' => true, 'message' => 'Status alterado com sucesso!']);
 
         }catch (\Exception $exception){
-            return response()->json(['success' => false, 'message' => 'Falha ao realizar o cadastro!']);
+            return response()->json(['success' => false, 'message' => 'Falha ao alterar status!']);
         }
     }
 

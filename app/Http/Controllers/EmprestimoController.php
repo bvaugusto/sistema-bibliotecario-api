@@ -64,10 +64,10 @@ class EmprestimoController extends Controller
             $emprestimo->notacao = $input['notacao'];
             $emprestimo->save();
 
-            return response()->json(['success' => true, 'message' => 'Emprestimo gravado com sucesso!']);
+            return response()->json(['success' => true, 'message' => 'Emprestimo realizado com sucesso!']);
 
         }catch (\Exception $exception){
-            return response()->json(['success' => true, 'message' => 'Falha ao gravar emprestimo!']);
+            return response()->json(['success' => true, 'message' => 'Falha ao cadastar emprestimo!']);
         }
     }
 
@@ -131,10 +131,10 @@ class EmprestimoController extends Controller
             $emprestimo->notacao = $input['notacao'];
             $emprestimo->update();
 
-            return response()->json(['success' => true, 'message' => 'Emprestimo cadastrado com sucesso!']);
+            return response()->json(['success' => true, 'message' => 'Emprestimo alterado com sucesso!']);
 
         }catch (\Exception $exception){
-            return response()->json(['success' => false, 'message' => 'Falha ao realizar o cadastro!']);
+            return response()->json(['success' => false, 'message' => 'Falha ao alterar o empréstimo!']);
         }
     }
 

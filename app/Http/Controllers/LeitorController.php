@@ -42,16 +42,13 @@ class LeitorController extends Controller
 
         $validator = Validator::make(
             array(
-                'nome' => $input['nome'],
-                'notacao' => $input['notacao']
+                'nome' => $input['nome']
             ),
             array(
-                'nome' => 'required|max:100',
-                'notacao' => 'required|max:100'
+                'nome' => 'required|max:100'
             ),
             array(
-                'nome' => 'Favor informar o nome!',
-                'notacao' => 'Favor informar a notação!'
+                'nome' => 'Favor informar o nome!'
             )
         );
 
@@ -62,13 +59,16 @@ class LeitorController extends Controller
 
             $leitor = new Leitor();
             $leitor->nome = $input['nome'];
-            $leitor->notacao = $input['notacao'];
+            $leitor->sobrenome = $input['sobrenome'];
+            $leitor->email = $input['email'];
+            $leitor->endereco = $input['endereco'];
+            $leitor->telefone = $input['telefone'];
             $leitor->save();
 
-            return response()->json(['success' => true, 'message' => 'Leitor gravado com sucesso!']);
+            return response()->json(['success' => true, 'message' => 'Leitor cadastrado com sucesso!']);
 
         }catch (\Exception $exception){
-            return response()->json(['success' => true, 'message' => 'Falha ao gravar leitor!']);
+            return response()->json(['success' => true, 'message' => 'Falha ao cadastrar leitor!']);
         }
     }
 
@@ -108,16 +108,13 @@ class LeitorController extends Controller
         $input = Input::all();
         $validator = Validator::make(
             array(
-                'nome' => $input['nome'],
-                'notacao' => $input['notacao']
+                'nome' => $input['nome']
             ),
             array(
-                'nome' => 'required|max:100',
-                'notacao' => 'required|max:100'
+                'nome' => 'required|max:100'
             ),
             array(
-                'nome' => 'Favor informar o nome!',
-                'notacao' => 'Favor informar a notação!'
+                'nome' => 'Favor informar o nome!'
             )
         );
 
@@ -128,13 +125,16 @@ class LeitorController extends Controller
 
             $leitor = Leitor::find($id);
             $leitor->nome = $input['nome'];
-            $leitor->notacao = $input['notacao'];
+            $leitor->sobrenome = $input['sobrenome'];
+            $leitor->email = $input['email'];
+            $leitor->endereco = $input['endereco'];
+            $leitor->telefone = $input['telefone'];
             $leitor->update();
 
-            return response()->json(['success' => true, 'message' => 'Leitor cadastrado com sucesso!']);
+            return response()->json(['success' => true, 'message' => 'Leitor alterado com sucesso!']);
 
         }catch (\Exception $exception){
-            return response()->json(['success' => false, 'message' => 'Falha ao realizar o cadastro!']);
+            return response()->json(['success' => false, 'message' => 'Falha ao alterar cadastro!']);
         }
     }
 
@@ -148,12 +148,13 @@ class LeitorController extends Controller
     {
         try{
 
-            $leitor = Leitor::find($id);
-            $leitor->history()->restore();
+            $leitor = Leitor::destroy($id);
+//            $leitor->history()->restore();
 
             return response()->json(['success' => true, 'message' => 'Leitor removido com sucesso!']);
 
         }catch (\Exception $exception){
+            dd($exception->getMessage());
             return response()->json(['success' => false, 'message' => 'Falha ao remover cadastro!']);
         }
     }

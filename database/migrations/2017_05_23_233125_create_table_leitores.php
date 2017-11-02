@@ -14,6 +14,7 @@ class CreateTableLeitores extends Migration
     public function up()
     {
         Schema::create('leitores', function (Blueprint $table) {
+            //Campos
             $table->increments('id');
 
             $table->unsignedInteger('status_id')->nullable();

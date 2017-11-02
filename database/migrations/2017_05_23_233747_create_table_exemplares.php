@@ -15,7 +15,7 @@ class CreateTableExemplares extends Migration
     {
         Schema::create('exemplares', function (Blueprint $table) {
             //Campos
-            $table->increments('id')->nullable();
+            $table->increments('id');
 
             $table->unsignedInteger('status_livro_id')->nullable();
             $table->unsignedInteger('livro_id')->nullable();

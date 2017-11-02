@@ -63,10 +63,10 @@ class StatusController extends Controller
             $status->notacao = $input['notacao'];
             $status->save();
 
-            return response()->json(['success' => true, 'message' => 'Status gravado com sucesso!']);
+            return response()->json(['success' => true, 'message' => 'Status cadastrado com sucesso!']);
 
         }catch (\Exception $exception){
-            return response()->json(['success' => true, 'message' => 'Falha ao gravar status!']);
+            return response()->json(['success' => true, 'message' => 'Falha ao cadastrar status!']);
         }
     }
 
@@ -129,10 +129,10 @@ class StatusController extends Controller
             $status->notacao = $input['notacao'];
             $status->update();
 
-            return response()->json(['success' => true, 'message' => 'Status cadastrado com sucesso!']);
+            return response()->json(['success' => true, 'message' => 'Status alterado com sucesso!']);
 
         }catch (\Exception $exception){
-            return response()->json(['success' => false, 'message' => 'Falha ao realizar o cadastro!']);
+            return response()->json(['success' => false, 'message' => 'Falha ao alterar status!']);
         }
     }
 

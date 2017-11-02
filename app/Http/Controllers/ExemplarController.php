@@ -65,10 +65,10 @@ class ExemplarController extends Controller
             $exemplar->notacao = $input['notacao'];
             $exemplar->save();
 
-            return response()->json(['success' => true, 'message' => 'Exemplar gravado com sucesso!']);
+            return response()->json(['success' => true, 'message' => 'Exemplar cadastrado com sucesso!']);
 
         }catch (\Exception $exception){
-            return response()->json(['success' => true, 'message' => 'Falha ao gravar exemplar!']);
+            return response()->json(['success' => true, 'message' => 'Falha ao cadastrar exemplar!']);
         }
     }
 
@@ -131,10 +131,10 @@ class ExemplarController extends Controller
             $exemplar->notacao = $input['notacao'];
             $exemplar->update();
 
-            return response()->json(['success' => true, 'message' => 'Exemplar cadastrado com sucesso!']);
+            return response()->json(['success' => true, 'message' => 'Exemplar alterado com sucesso!']);
 
         }catch (\Exception $exception){
-            return response()->json(['success' => false, 'message' => 'Falha ao realizar o cadastro!']);
+            return response()->json(['success' => false, 'message' => 'Falha ao alterar o cadastro!']);
         }
     }
 

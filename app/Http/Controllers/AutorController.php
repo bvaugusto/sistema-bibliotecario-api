@@ -63,10 +63,10 @@ class AutorController extends Controller
             $autor->notacao = $input['notacao'];
             $autor->save();
 
-            return response()->json(['success' => true, 'message' => 'Autor gravado com sucesso!']);
+            return response()->json(['success' => true, 'message' => 'Autor cadastradp com sucesso!']);
 
         }catch (\Exception $exception){
-            return response()->json(['success' => false, 'message' => 'Falha ao gravar autor!']);
+            return response()->json(['success' => false, 'message' => 'Falha ao cadastrar autor!']);
         }
     }
 
@@ -135,7 +135,7 @@ class AutorController extends Controller
             return response()->json(['success' => true, 'message' => 'Autor atuallizado com sucesso!']);
 
         }catch (\Exception $exception){
-            return response()->json(['success' => false, 'message' => 'Falha ao atualizar ocadastro!']);
+            return response()->json(['success' => false, 'message' => 'Falha ao atualizar cadastro!']);
         }
     }
 

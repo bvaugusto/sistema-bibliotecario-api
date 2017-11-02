@@ -18,7 +18,12 @@ class LivroController extends Controller
      */
     public function index()
     {
-        $livro = Livro::all();
+        $livro = Livro::select( 'livros.id', 'livros.isbn', 'livros.title', 'livros.subtitulo', 'autores.nome as autor_nome',
+            'categorias.nome as categoria_nome', 'editoras.nome as editora_nome')
+            ->join('autores', 'livros.autor_id', '=', 'autores.id')
+            ->join('categorias', 'livros.catagoria_id', '=', 'categorias.id')
+            ->join('editoras', 'livros.editora_id', '=', 'editoras.id')
+            ->get();
         return response()->json($livro);
     }
 
@@ -73,15 +78,16 @@ class LivroController extends Controller
             $livro->title = Input::get('title');
             $livro->subtitulo = Input::get('subtitulo');
             $livro->descricao = Input::get('descricao');
-            $livro->ano = DateTime::createFromFormat('d-m-Y', Input::get('ano'));
+//            $livro->ano = DateTime::createFromFormat('d-m-Y', Input::get('ano'));
+            $livro->ano = Input::get('ano');
             $livro->num_pag = Input::get('num_pag');
 
             $livro->save();
 
-            return response()->json(['success' => true, 'message' => 'Livro gravado com sucesso!']);
+            return response()->json(['success' => true, 'message' => 'Livro cadastrado com sucesso!']);
 
         }catch (\Exception $exception){
-            return response()->json(['success' => true, 'message' => 'Falha ao cadastrar o livro!']);
+            return response()->json(['success' => true, 'message' => 'Falha ao cadastrar livro!']);
         }
     }
 
@@ -121,16 +127,19 @@ class LivroController extends Controller
         $input = Input::all();
         $validator = Validator::make(
             array(
-                'nome' => $input['nome'],
-                'notacao' => $input['notacao']
+                'autor_id' => Input::get('autor'),
+                'catagoria_id' => Input::get('categoria'),
+                'editora_id' => Input::get('editora')
             ),
             array(
-                'nome' => 'required|max:100',
-                'notacao' => 'required|max:100'
+                'autor_id' => 'required',
+                'catagoria_id' => 'required',
+                'editora_id' => 'required'
             ),
             array(
-                'nome' => 'Favor informar o nome!',
-                'notacao' => 'Favor informar a notação!'
+                'autor_id' => 'Favor informar o autor!',
+                'catagoria_id' => 'Favor informar a categoria!',
+                'editora_id' => 'Favor informar a editora!'
             )
         );
 
@@ -140,14 +149,21 @@ class LivroController extends Controller
         try{
 
             $livro = Livro::find($id);
-            $livro->nome = $input['nome'];
-            $livro->notacao = $input['notacao'];
+            $livro->autor_id = Input::get('autor');
+            $livro->catagoria_id = Input::get('categoria');
+            $livro->editora_id = Input::get('editora');
+            $livro->isbn = Input::get('isbn');
+            $livro->title = Input::get('title');
+            $livro->subtitulo = Input::get('subtitulo');
+            $livro->descricao = Input::get('descricao');
+            $livro->ano = Input::get('ano');
+            $livro->num_pag = Input::get('num_pag');
             $livro->update();
 
-            return response()->json(['success' => true, 'message' => 'Livro cadastrado com sucesso!']);
+            return response()->json(['success' => true, 'message' => 'Livro alterado com sucesso!']);
 
         }catch (\Exception $exception){
-            return response()->json(['success' => false, 'message' => 'Falha ao realizar o cadastro!']);
+            return response()->json(['success' => false, 'message' => 'Falha ao alterar cadastro!']);
         }
     }
 
