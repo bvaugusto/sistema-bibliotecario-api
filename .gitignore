@@ -1,5 +1,5 @@
 ### Laravel template
-/.idea/
+.idea/
 .idea/inspectionProfiles/
 vendor/
 node_modules/
