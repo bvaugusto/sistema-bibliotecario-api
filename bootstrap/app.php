@@ -52,7 +52,4 @@ $app->singleton(
 |
 */
 
-//$app->configure('cors');
-//$app->register(Barryvdh\Cors\ServiceProvider::class);
-
 return $app;
